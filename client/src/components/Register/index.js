@@ -11,15 +11,23 @@ export default props => {
 
     function handleForm(e) {
         const {name, value} = e.target
+        setForm({
+            ...form,
+            [name]: value
+        })
     }
 
     function handleSubmit(e) {
-        console.log('enviando ..')
+        e.preventDefault()
+
+        $.post(`${props.api}/insertUser`, form, r => {
+            console.log(r)
+        })
     }
 
     return (
         <div className="Register">
-            <Form />
+            <Form handleSubmit={handleSubmit} handleForm={handleForm} warning={true} />
         </div>
     )
 

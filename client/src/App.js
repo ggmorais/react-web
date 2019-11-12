@@ -11,8 +11,8 @@ export default props => {
         'actual': 'Register',
         'pages': {
             'Posts': <Posts api={api} />,
-            'Login': <Login />,
-            'Register': <Register />
+            'Login': <Login api={api} />,
+            'Register': <Register api={api} />
     }})
 
     function handlePages(e) {
