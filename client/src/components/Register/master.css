@@ -1,0 +1,32 @@
+.Register {
+    height: 80%;
+    width: 80%;
+    min-width: 400px;
+    max-width: 450px;;
+    margin: 0px auto;
+}
+.Register-inputs {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.Register label {
+    font-style: italic;
+    color: dimgrey;
+}
+.Register-button-center {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+.Register-button-center button {
+    width: 70%;
+    border: 1px solid black;
+    background-color: transparent;
+    padding: 14px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 3px;
+}

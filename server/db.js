@@ -1,14 +1,7 @@
-var mongoose = require('mongoose')
+const MongoClient = require('mongodb').MongoClient
 
 
-const url = 'mongodb+srv://root:gm14022001@mongo-db-cekcg.mongodb.net/test?retryWrites=true&w=majority'
+module.exports = (url, dbname) => MongoClient.connect(url, (err, db) => {
+    return db.db(dbname)
+})
 
-mongoose.connect(url)
-
-var userSchema = new mongoose.Schema({
-    username: String,
-    email: String
-}, { collection: 'usercollection' }
-)
- 
-module.exports = { Mongoose: mongoose, UserSchema: userSchema }
