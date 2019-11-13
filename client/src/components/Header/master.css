@@ -1,0 +1,14 @@
+.Header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    margin: 0px auto;
+}
+.Header header {
+    display: inline-flex;
+}
+.Header button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+}

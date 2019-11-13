@@ -2,20 +2,22 @@ import React from 'react'
 import Posts from './components/Posts'
 import Login from './components/Login'
 import Register from './components/Register'
+import Header from './components/Header'
 
 
 export default props => {
 
     const [api, setApi] = React.useState('http://localhost:3001')
     const [page, setPage] = React.useState({
-        'actual': 'Register',
+        'actual': 'Login',
         'pages': {
             'Posts': <Posts api={api} />,
-            'Login': <Login api={api} />,
+            'Login': <Login api={api} redirect={handlePages}/>,
             'Register': <Register api={api} />
     }})
 
     function handlePages(e) {
+        console.log(e.target.name)
         setPage({
             ...page,
             actual: e.target.name
@@ -24,11 +26,7 @@ export default props => {
 
     return (
         <div className="App">
-            <div style={{width: '100%', display: 'inline-block'}}>
-                <button name="Posts" onClick={handlePages}>posts</button>
-                <button name="Login" onClick={handlePages}>login</button>
-                <button name="Register" onClick={handlePages}>register</button>
-            </div>
+            <Header handlePages={handlePages} />
             {page.pages[page.actual]}
         </div>
     )

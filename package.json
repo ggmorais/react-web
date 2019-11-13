@@ -15,7 +15,10 @@
   "concurrently": "^3.5.1"
  },
  "dependencies": {
+  "csshake": "^1.5.3",
   "jquery": "^3.4.1",
-  "mongoose": "^5.7.9"
+  "mongoose": "^5.7.9",
+  "reshake": "^1.2.1",
+  "styled-components": "^4.4.1"
  }
 }

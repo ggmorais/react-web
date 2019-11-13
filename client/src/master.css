@@ -4,3 +4,7 @@
     outline: none;
     resize: none;
 }
+
+html {
+    min-height: 100vh;
+}
