@@ -1,8 +1,12 @@
 import React from 'react'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
+
 import Posts from './components/Posts'
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header'
+import Error from './components/Error'
 
 
 export default props => {
@@ -17,7 +21,6 @@ export default props => {
     }})
 
     function handlePages(e) {
-        console.log(e.target.name)
         setPage({
             ...page,
             actual: e.target.name
@@ -25,10 +28,19 @@ export default props => {
     }
 
     return (
-        <div className="App">
-            <Header handlePages={handlePages} />
-            {page.pages[page.actual]}
-        </div>
+         <BrowserRouter>
+            <TransitionGroup>
+                <CSSTransition timeout="300" classNames="fade">
+                    <Switch>
+                        <Route exact path="/" component={Login} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route component={Error} />
+                    </Switch>
+                </CSSTransition>
+            </TransitionGroup>
+         </BrowserRouter>
+
     )
 
 }

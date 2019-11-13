@@ -1,7 +1,7 @@
 .Login {
     height: 80%;
     width: 80%;
-    min-width: 400px;
+    min-width: 350px;
     max-width: 450px;
     margin: 0px auto;
     background-color: #5d5d5d1f;
@@ -66,10 +66,8 @@
     text-align: center;
     font-size: 15px;
 }
-.Login-signup span {
-    color: #0031cc;
-    /* text-shadow: -3px -1px 2px black; */
-    /* font-weight: bolder; */
+.Login-signup a {
+    color: #9dff00;
     cursor: pointer;
     text-decoration: underline;
 }

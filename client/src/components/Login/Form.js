@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 
 export default props => {
@@ -16,7 +17,7 @@ export default props => {
             <div className="Login-button-center">
                 <button>LOGIN</button>
             </div>
-            <p className="Login-signup">Don't have an account? <span name="Register" onClick={props.redirect}>Sign-up</span> now for free</p>
+            <p className="Login-signup">Don't have an account? <a href="/register">Sign up</a> now for free</p>
         </div>
     )
 

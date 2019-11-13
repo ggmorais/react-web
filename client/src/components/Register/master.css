@@ -2,7 +2,7 @@
 
     height: 80%;
     width: 80%;
-    min-width: 400px;
+    min-width: 350px;
     max-width: 450px;
     margin: 0px auto;
     background-color: #5d5d5d1f;
@@ -102,4 +102,14 @@
     left: 0px;
     margin: 0px;
     z-index: -5;
+}
+
+.Register-signup {
+    text-align: center;
+    font-size: 15px;
+}
+.Register-signup a {
+    color: #9dff00;
+    cursor: pointer;
+    text-decoration: underline;
 }

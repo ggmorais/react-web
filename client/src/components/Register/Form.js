@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 export default props => {
@@ -21,6 +22,7 @@ export default props => {
             <div className="Register-button-center">
                 <button>CREATE</button>
             </div>
+            <p className="Register-signup">Already have an account? <a href="/login">Sign in</a></p>
         </form>
     )
 }
