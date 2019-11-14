@@ -4,9 +4,13 @@ import Header from '../Header'
 
 export default props => {
   
-  if (!localStorage.getItem('@react-web/auth')) {
-    props.history.push('/login')
-  }
+  React.useEffect(() => {
+    if (!localStorage.getItem('@react-web/auth')) {
+      props.history.push('/login')
+    }
+  }, [])
+  
+  if (!localStorage.getItem('@react-web/auth')) return <div/>
 
   return (
     <div className="Home">

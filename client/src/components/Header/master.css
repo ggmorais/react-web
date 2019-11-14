@@ -59,23 +59,77 @@
   box-shadow: -4px 0px 11px #7575754a;
   display: none;
   float: right;
-  /* position: absolute; */
+  position: absolute;
   /* margin-right: 40px; */
   /* margin-top: 3px; */
-  right: 0;
-  top: 0;
+  right: 0px;
+  top: 0px;
   height: 100vh;
 }
 
 #vmenu {
   list-style-type: none;
+  color: black;
+  margin-top: 80px;
+  /* border-top: 2px solid black; */
+}
+
+#vmenu > li {
+  /* padding: 10px; */
+  margin-top: 15px;
+  text-align: center;
+  margin-right: 40px;
+  font-size: 25px;
+  cursor: pointer;
+  /* background-color: red; */
+}
+
+#vmenu li:hover {
+  border-bottom: 2px solid #5c7ee9;
+  margin-bottom: -2px;
 }
 
 #vmenu-close {
   width: 20px;
   height: 40px;
-  margin-top: 40vh;
-  background-color: red;
+  float: right;
+  /* margin-right: 30px; */
+  margin-top: 7px;
+  width: 100%;
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  border-bottom: 2px solid #5c7ee9;
+  color: black;
+}
+
+#vmenu-close > p {
+  padding: 15px;
+}
+
+#vmenu-title {
+  padding: 4px;
+  /* margin-top: -15px; */
+  margin-left: 19px;
+  font-weight: bold;
+  font-size: 21px;
+  font-style: italic;
+  height: 100%;
+  /* margin-bottom: -10px; */
+  position: absolute;
+}
+
+.btn_close {
+  width: 40px;
+  cursor: pointer;
+  text-align: right;
+  float: right;
+  margin-right: 15px;
+}
+
+.btn_close:hover {
+  /* border-bottom: 2px solid #5c7ee9; */
+  /* width: 42px; */
 }
 
 #vmenu-anim {
