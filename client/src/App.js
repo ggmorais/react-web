@@ -1,46 +1,48 @@
 import React from 'react'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import { Route, Switch } from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Posts from './components/Posts'
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header'
 import Error from './components/Error'
+import Home from './components/Home'
 
 
 export default props => {
 
-    const [api, setApi] = React.useState('http://localhost:3001')
-    const [page, setPage] = React.useState({
-        'actual': 'Login',
-        'pages': {
-            'Posts': <Posts api={api} />,
-            'Login': <Login api={api} redirect={handlePages}/>,
-            'Register': <Register api={api} />
-    }})
+  const [api, setApi] = React.useState('http://localhost:3001')
+  const [page, setPage] = React.useState(document.location.pathname)
+  const [bg, setBg] = React.useState('bg_react')
 
-    function handlePages(e) {
-        setPage({
-            ...page,
-            actual: e.target.name
-        })
-    }
+  React.useEffect(() => {
+    setPage(document.location.pathname.substr(1).toUpperCase())
+  }, [document.location.pathname])
 
-    return (
-         <BrowserRouter>
-            <TransitionGroup>
-                <CSSTransition timeout="300" classNames="fade">
-                    <Switch>
-                        <Route exact path="/" component={Login} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                        <Route component={Error} />
-                    </Switch>
-                </CSSTransition>
-            </TransitionGroup>
-         </BrowserRouter>
-
-    )
+  document.title = page
+  
+  return (
+    <div className="App">
+      <div className='Background bg_react'></div>
+      <Route render={({location}) => (
+        <TransitionGroup>
+          <CSSTransition
+            key={location.key}
+            timeout={450} 
+            classNames="fade"
+          >
+            <Switch location={location}>
+              <Route exact path="/" render={(props) => <Login {...props} api={api} />} />
+              <Route path="/login" render={(props) => <Login {...props} api={api} />} />
+              <Route path="/register" render={(props) => <Register {...props} api={api} />} />
+              <Route path="/home" render={(props) => <Home {...props} api={api} />} />
+              <Route path="/error" component={Error} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      )} />
+    </div>
+  )
 
 }

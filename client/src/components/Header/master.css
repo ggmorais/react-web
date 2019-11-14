@@ -1,14 +1,93 @@
 .Header {
-    position: fixed;
+    position: sticky;
     top: 0px;
     width: 100%;
     margin: 0px auto;
+    background-color: #444444;
+    color: white;
+    padding: 0px;
+    border: 0px;
+    height: 49px;
 }
-.Header header {
-    display: inline-flex;
+
+#hmenu {
+  list-style-type: none;
+  list-style: none;
+  columns: 1;
 }
-.Header button {
-    border: none;
-    background-color: transparent;
-    font-size: 20px;
+
+#hmenu > li {
+  display: inline;
+}
+
+#hmenu > li .items {
+  display: inline-block;
+  padding: 13px;
+  height: 100%;
+  cursor: pointer;
+}
+
+#hmenu > li .items:hover {
+  background-color: #3c3c3c;
+  border-bottom: 5px solid;
+  border-bottom-color: #5c7ee9;
+  margin-bottom: -1px;
+}
+
+#hmenu  > li #title {
+  font-size: 30px;
+  padding: 5px;
+  margin-right: 60px;
+  float: left;
+  color: #5c7ee9;
+  font-weight: bold;
+}
+
+.btn_options {
+  width: 40px;
+  float: right;
+  margin-right: 40px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+.Header-menu {
+  width: 300px;
+  height: 300px;
+  /* background-color: #5c7ee9; */
+  background-color: white;
+  box-shadow: -4px 0px 11px #7575754a;
+  display: none;
+  float: right;
+  /* position: absolute; */
+  /* margin-right: 40px; */
+  /* margin-top: 3px; */
+  right: 0;
+  top: 0;
+  height: 100vh;
+}
+
+#vmenu {
+  list-style-type: none;
+}
+
+#vmenu-close {
+  width: 20px;
+  height: 40px;
+  margin-top: 40vh;
+  background-color: red;
+}
+
+#vmenu-anim {
+  bottom:15%;
+  position:absolute;
+  -webkit-animation:linear infinite alternate;
+  -webkit-animation-name: run;
+  -webkit-animation-duration: 5s;
+}
+
+@-webkit-keyframes #vmenu-anim {
+  0% { left: 0;}
+  50%{ left : 100%;}
+  100%{ left: 0;}
 }

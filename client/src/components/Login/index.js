@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import { Redirect } from 'react-router-dom'
 
 import Form from './Form'
 import './master.css'
@@ -7,11 +8,39 @@ import './master.css'
 
 export default props => {
 
-    return (
-        <div className="Login">
-            <div className="React-background"></div>
-            <Form redirect={props.redirect}/>
-        </div>
-    )
+  const [form, setForm] = React.useState({})
+  const [warn, setWarn] = React.useState('')
+
+  function handleForm(e) {
+    const {name, value} = e.target
+
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    $.post(`${props.api}/login`, form, r => {
+      setWarn()
+      if (r.e)
+        return setWarn('Error. Please try again later.')
+      if (r.r.length === 0)
+        return setWarn('Username or password incorrect.')
+      else {
+        localStorage.setItem('@react-web/auth', true)
+        props.history.push('/home')
+      }
+        
+    })
+  }
+
+  return (
+    <div className="Login main">
+      <Form handleForm={handleForm} handleSubmit={handleSubmit} warning={warn}/>
+    </div>
+  )
 
 }

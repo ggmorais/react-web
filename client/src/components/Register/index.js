@@ -30,7 +30,6 @@ export default props => {
 
     return (
         <div className="Register">
-            <div className="React-background"></div>
             <Form handleSubmit={handleSubmit} handleForm={handleForm} warning={warn} />
         </div>
     )
