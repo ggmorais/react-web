@@ -1,0 +1,101 @@
+.Home {
+  overflow-x: hidden;
+}
+
+label {
+  cursor: pointer;
+}
+
+.PostViewer {
+  width: 70%;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  margin: 0px auto;
+  /* background-color: red; */
+  /* border: 1px solid black; */
+  box-shadow: 0px 4px 3px #6b6b6b;
+}
+
+.Post, .NewPost {
+  width: 98%;
+  height: auto;
+  min-height: 200px;
+  /* max-height: 600px; */
+  /* background-color: blue; */
+  /* border: 1px solid black; */
+  box-shadow: 0px 1px 4px #b1b1b1;
+  border-radius: 15px;
+  margin: 30px auto;
+}
+
+.NewPost {
+  min-height: 120px;
+}
+
+#NewPost-textdiv {
+  width: 98%;
+  min-height: 80px;
+  margin: 5px;
+  /* margin-bottom: 40px; */
+}
+
+.NewPost-text {
+  width: 100%;
+  /* height: 100%; */
+  min-height: 70px;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 0px auto;
+  box-sizing: border-box;
+  border: none;
+}
+
+#NewPost-addImage {
+  display: none;
+}
+
+.NewPost-imageLbl {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+}
+
+.NewPost-actions {
+  display: inline;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.NewPost a {
+  float: right;
+  font-size: 25px;
+  padding: 8px;
+  opacity: .3;
+  cursor: pointer;
+  /* margin-top: 30px; */
+}
+
+.img_actions {
+  width: 40px;
+  height: 40px;
+}
+
+.NewPost-viewImage {
+  width: 100%;
+  margin-bottom: 30px;
+  border: none;
+  background-color: #444444;
+}
+
+.NewPost-viewImage img {
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 100%; */
+  max-width: 100%;
+  box-shadow: 0px 1px 4px #00000040;
+}

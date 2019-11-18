@@ -10,6 +10,13 @@ export default props => {
 
   const [form, setForm] = React.useState({})
   const [warn, setWarn] = React.useState('')
+  
+  React.useEffect(() => {
+    if (localStorage.getItem('@react-web/auth'))
+        props.history.push('/home')
+  }, [])
+
+  if (localStorage.getItem('@react-web/auth')) return <div/>
 
   function handleForm(e) {
     const {name, value} = e.target

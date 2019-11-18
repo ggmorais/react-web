@@ -12,7 +12,7 @@ import Home from './components/Home'
 
 export default props => {
 
-  const [api, setApi] = React.useState('http://localhost:3001')
+  const [api, setApi] = React.useState('http://172.21.101.230:3001')
   const [page, setPage] = React.useState(document.location.pathname)
   const [bg, setBg] = React.useState('bg_react')
 

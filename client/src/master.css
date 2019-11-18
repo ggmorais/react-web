@@ -61,6 +61,9 @@ html {
   right: 0;
 }
 
+input[type="file"] {
+  display: none;
+}
 
 .fade-appear, .fade-enter {
   opacity: 0;
