@@ -40,6 +40,7 @@ export default props => {
         method: 'post',
         data: form,
         cache: false,
+        contentType: false,
         processData: false,
         success: r => {
           console.log(r)

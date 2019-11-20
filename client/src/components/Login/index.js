@@ -13,7 +13,7 @@ export default props => {
   
   React.useEffect(() => {
     if (localStorage.getItem('@react-web/auth'))
-        props.history.push('/home')
+        props.history.push('/')
   }, [])
 
   if (localStorage.getItem('@react-web/auth')) return <div/>
@@ -38,7 +38,7 @@ export default props => {
         return setWarn('Username or password incorrect.')
       else {
         localStorage.setItem('@react-web/auth', true)
-        props.history.push('/home')
+        props.history.push('/')
       }
         
     })

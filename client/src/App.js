@@ -12,7 +12,8 @@ import Home from './components/Home'
 
 export default props => {
 
-  const [api, setApi] = React.useState('http://172.21.101.230:3001')
+  //const [api, setApi] = React.useState('http://172.21.101.230:3001')
+  const [api, setApi] = React.useState('http://10.0.0.15:3001')
   const [page, setPage] = React.useState(document.location.pathname)
   const [bg, setBg] = React.useState('bg_react')
 
@@ -33,10 +34,9 @@ export default props => {
             classNames="fade"
           >
             <Switch location={location}>
-              <Route exact path="/" render={(props) => <Login {...props} api={api} />} />
-              <Route path="/login" render={(props) => <Login {...props} api={api} />} />
-              <Route path="/register" render={(props) => <Register {...props} api={api} />} />
-              <Route path="/home" render={(props) => <Home {...props} api={api} />} />
+              <Route exact path="/" render={props => <Home {...props} api={api} />} />
+              <Route path="/login" render={props => <Login {...props} api={api} />} />
+              <Route path="/register" render={props => <Register {...props} api={api} />} />
               <Route path="/error" component={Error} />
             </Switch>
           </CSSTransition>
