@@ -10,7 +10,7 @@ const MG = require('mongodb').MongoClient
 const app = express()
 const port = 3001
 
-const upload = multer({dest: __dirname + '/uploads/images'});
+const upload = multer({dest: '/uploads/images'});
 const router = express.Router();
 
 app.use(cors())
@@ -43,17 +43,27 @@ MG.connect(dbs.host, (err, database) => {
 })
 
 app.get('/getPosts', (req, res) => {
-  db.collection(dbs.posts).find(req.query).toArray((e, r) => {
+  db.collection(dbs.posts).find(req.query).sort({date: -1}).toArray((e, r) => {
     res.send({ e, r })
   })
 })
 
 app.post('/insertPost', upload.single('image'), (req, res) => {
-  var fileName = 'uploads/images/' + req.file.filename + '.png'
-  fs.rename(req.file.path, fileName, err => {
-    if (err) res.send({err: err})
-    db.collection(dbs.posts).insertOne({user: req.body.user, body: req.body.body, image: fileName})
-  })
+  try {
+    if (req.file) {
+      var fileName = './public/images/' + req.file.filename + '.png'
+      fs.rename(req.file.path, fileName, err => {
+        if (err) res.send({err: err})
+        db.collection(dbs.posts).insertOne({...req.body, image: fileName})
+      })
+    } else {
+      db.collection(dbs.posts).insertOne({...req.body})
+    }
+    res.send({done: true})
+  } catch (e) {
+    res.send({err: e})
+  }
+
 })
 
 app.get('/getUsers', (req, res) => {
@@ -63,7 +73,6 @@ app.get('/getUsers', (req, res) => {
 })
 
 app.post('/insertUser', (req, res) => {
-
   db.collection(dbs.users).find({ $or: [{ email: req.body.email }, { username: req.body.username }] }).toArray((e, r) => {
     if (r.length > 0)
       res.send({ err: 'Email or username already in use.' })
@@ -75,7 +84,7 @@ app.post('/insertUser', (req, res) => {
 
 app.post('/login', (req, res) => {
   db.collection(dbs.users).find(req.body).toArray((e, r) => {
-    res.send({ e, r })
+    res.send({e, r})
   })
 })
 

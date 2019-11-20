@@ -38,6 +38,7 @@ export default props => {
         return setWarn('Username or password incorrect.')
       else {
         localStorage.setItem('@react-web/auth', true)
+        localStorage.setItem('@react-web/userInfos', JSON.stringify({id: r.r[0]._id, username: r.r[0].username, firstName: r.r[0].firstName, lastName: r.r[0].lastName}))
         props.history.push('/')
       }
         

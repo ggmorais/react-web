@@ -10,6 +10,8 @@ import Form from '../Login/Form'
 export default props => {
   
   React.useEffect(() => {
+    getPosts()
+
     if (!localStorage.getItem('@react-web/auth')) {
       props.history.push('/login')
     }
@@ -17,7 +19,9 @@ export default props => {
   
   if (!localStorage.getItem('@react-web/auth')) return <div/>
 
+  const [userInfos, setUserInfos] = React.useState(JSON.parse(localStorage.getItem('@react-web/userInfos')))
   const [newPost, setNewPost] = React.useState({body: '', image: ''})
+  const [posts, setPosts] = React.useState([])
 
   function handleNewPost(e) {
     const {name, value} = e.target
@@ -26,7 +30,6 @@ export default props => {
       ...newPost,
       [name]: e.target.files ? e.target.files[0] : value
     })
-
   }
 
   function handlePublish() {
@@ -34,7 +37,10 @@ export default props => {
       var form = new FormData()
       form.append('image', newPost.image)
       form.append('body', newPost.body)
-
+      form.append('username', userInfos.username)
+      form.append('owner', userInfos.firstName + ' ' + userInfos.lastName)
+      form.append('date', new Date())
+      
       $.ajax({
         url: `${props.api}/insertPost`,
         method: 'post',
@@ -43,19 +49,32 @@ export default props => {
         contentType: false,
         processData: false,
         success: r => {
-          console.log(r)
+          if (r.done) {
+            setNewPost({body: '', image: ''})
+            getPosts()
+          }
         }
       })
     }
   }
 
+  function getPosts(limit = null) {
+    console.log('Getting posts ...')
+
+    $.get(`${props.api}/getPosts`, r => {
+      setPosts(r.r.map(post => (
+        <Post key={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
+      )))
+    })
+  }
+
   return (
     <div className="Home">
       <div className="Background bg_white"></div>
-      <Header />
+      <Header userInfos={userInfos} />
       <div className="PostViewer">
         <NewPost handleNewPost={handleNewPost} newPost={newPost} handlePublish={handlePublish} />
-        <Post />
+        {posts}
       </div>
     </div>
   )

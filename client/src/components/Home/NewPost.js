@@ -23,7 +23,7 @@ export default props => {
             <img src={image} className="img_actions"/>
             <input name="image" type="file" accept=".png, .jpg, .jpeg, .gif, .svg" id="NewPost-addImage" onChange={props.handleNewPost} />
           </label>
-          <a onClick={props.handlePublish} style={{opacity: props.newPost.body || props.newPost.image ? '1' : '.3'}}>Publish</a>
+          <a onClick={props.handlePublish} style={{color: props.newPost.body || props.newPost.image ? 'black' : 'grey'}}>Publish</a>
         </div>
       </form>
     </div>

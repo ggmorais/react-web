@@ -14,7 +14,7 @@ export default props => {
   }
 
   function exit() {
-    localStorage.removeItem('@react-web/auth', false)
+    localStorage.removeItem('@react-web/auth')
     document.location.reload()
   }
 
@@ -33,7 +33,7 @@ export default props => {
                 <li>Friends</li>
                 <li onClick={exit}>Exit</li>
               </ul>
-              <p id="vmenu-close"><span id="vmenu-title">MENU</span><img className="btn_close" src={btn_close} onClick={showMenu} /></p>
+              <p id="vmenu-close"><span id="vmenu-title">{props.userInfos.firstName} {props.userInfos.lastName}</span><img className="btn_close" src={btn_close} onClick={showMenu} /></p>
             </div>
             <li><img className="btn_options" src={btn_options} onClick={showMenu} /></li>
           </ul>
