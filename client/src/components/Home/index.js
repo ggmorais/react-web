@@ -10,11 +10,12 @@ import Form from '../Login/Form'
 export default props => {
   
   React.useEffect(() => {
-    getPosts()
-
     if (!localStorage.getItem('@react-web/auth')) {
       props.history.push('/login')
+    } else {
+      getPosts()
     }
+
   }, [])
   
   if (!localStorage.getItem('@react-web/auth')) return <div/>
@@ -63,14 +64,14 @@ export default props => {
 
     $.get(`${props.api}/getPosts`, r => {
       setPosts(r.r.map(post => (
-        <Post key={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
+        <Post key={post._id} _id={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
       )))
     })
   }
 
   return (
     <div className="Home">
-      <div className="Background bg_white"></div>
+      <div className="Background bg_home"></div>
       <Header userInfos={userInfos} />
       <div className="PostViewer">
         <NewPost handleNewPost={handleNewPost} newPost={newPost} handlePublish={handlePublish} />

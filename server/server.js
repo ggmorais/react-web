@@ -5,6 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const multer = require('multer')
 const MG = require('mongodb').MongoClient
+const ObjectID = require('mongodb').ObjectID
 
 
 const app = express()
@@ -13,12 +14,18 @@ const port = 3001
 const upload = multer({dest: '/uploads/images'});
 const router = express.Router();
 
+// Express configurations
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000}))
 
+
+// Url acessible folder
+app.use('/public', express.static('public'))
+
+
+// Database settings
 const dbs = {
-  //host: 'mongodb://localhost:27017',
   host: 'mongodb+srv://root:gm14022001@mongo-db-cekcg.mongodb.net/test?retryWrites=true&w=majority',
   main: 'react',
   users: 'users',
@@ -26,20 +33,31 @@ const dbs = {
 }
 
 
-/*const storage = multer.diskStorage({
-  destination: "./public/uploads/",
-  filename: function(req, file, cb){
-     cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
-  }
-});
-*/
-
-// Init MongoDB then init server
+// Init MongoDB
 MG.connect(dbs.host, (err, database) => {
   if (err) throw err
   db = database.db(dbs.main)
 
+  // Init server
   app.listen(port)
+})
+
+app.get('/getCommentaries', (req, res) => {
+  db.collection(dbs.posts).findOne({_id: ObjectID(req.query._id)}, (e, r) => {
+    res.send(Array(r.commentaries)[0])
+  })
+  /*db.collection(dbs.posts).findOne({_id: ObjectID(req.query._id)}).toArray((e, r) => {
+    res.send({ e, r })
+  })*/
+})
+
+app.post('/insertCommentary', (req, res) => {
+  var userInfos = JSON.parse(req.body.userInfos)
+  db.collection(dbs.posts).updateOne({_id: ObjectID(req.body._id)}, {$push: { commentaries: {_id: new ObjectID(), fullName: userInfos.firstName + ' ' + userInfos.lastName, username: userInfos.username, body: req.body.body, date: req.body.date} }})
+  res.send({done: true})
+  /*db.collection(dbs.posts).find({_id: ObjectID(req.body._id)}).toArray((e, r) => {
+    console.log(r)
+  })*/
 })
 
 app.get('/getPosts', (req, res) => {
@@ -51,8 +69,9 @@ app.get('/getPosts', (req, res) => {
 app.post('/insertPost', upload.single('image'), (req, res) => {
   try {
     if (req.file) {
-      var fileName = './public/images/' + req.file.filename + '.png'
-      fs.rename(req.file.path, fileName, err => {
+      var fileName = req.file.filename + '.png'
+      var pathName = './public/images/' + fileName
+      fs.rename(req.file.path, pathName, err => {
         if (err) res.send({err: err})
         db.collection(dbs.posts).insertOne({...req.body, image: fileName})
       })

@@ -37,6 +37,10 @@ html {
   background-image: url('components/assets/bg_blue.png')
 }
 
+.bg_home {
+  background-color: #f7f7f7;
+}
+
 .bg_white {
   background-color: white;
 }
