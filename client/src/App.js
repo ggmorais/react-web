@@ -21,11 +21,21 @@ export default props => {
     setPage(document.location.pathname.substr(1).toUpperCase())
   }, [document.location.pathname])
 
+  const BG = {
+    '/login': 'bg_react',
+    '/register': 'bg_react',
+    '/account': 'bg_home',
+    '/home': 'bg_home',
+    '/main': 'bg_home'
+  }
+
+  const USE_HEADER = ['/', '/home', '/account']
+
   document.title = page
-  
+
   return (
     <div className="App">
-      <div className='Background bg_react'></div>
+      <div className={'Background ' + BG[document.location.pathname]}></div>
       <Route render={({location}) => (
         <TransitionGroup>
           <CSSTransition

@@ -43,6 +43,7 @@
   float: left;
   color: #5c7ee9;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .btn_options {
@@ -65,7 +66,7 @@
   position: absolute;
   /* margin-right: 40px; */
   /* margin-top: 3px; */
-  right: 0px;
+  right: -300px;
   top: 0px;
   height: 100vh;
 }

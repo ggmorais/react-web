@@ -11,7 +11,7 @@ export default props => {
 
   const [form, setForm] = React.useState({})
   const [warn, setWarn] = React.useState('')
-  
+
   React.useEffect(() => {
     if (localStorage.getItem('@react-web/auth'))
         props.history.push('/')

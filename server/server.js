@@ -61,7 +61,7 @@ app.post('/insertCommentary', (req, res) => {
 })
 
 app.get('/getPosts', (req, res) => {
-  db.collection(dbs.posts).find(req.query).sort({date: -1}).toArray((e, r) => {
+  db.collection(dbs.posts).find(req.query.find).limit(parseInt(req.query.limit)).sort({_id: -1}).toArray((e, r) => {
     res.send({ e, r })
   })
 })
@@ -82,7 +82,11 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
   } catch (e) {
     res.send({err: e})
   }
+})
 
+app.post('/deletePost', (req, res) => {
+  db.collection(dbs.posts).remove({_id: ObjectID(req.body._id)})
+  res.send({done: true})
 })
 
 app.get('/getUsers', (req, res) => {
