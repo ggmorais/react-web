@@ -1,6 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
 
+import config from '../config'
 import Form from './Form'
 import './master.css'
 import background from '../assets/bg_react.png'
@@ -22,7 +23,7 @@ export default props => {
     function handleSubmit(e) {
         e.preventDefault()
         setWarn()
-        $.post(`${props.api}/insertUser`, form, r => {
+        $.post(`${config.api}/insertUser`, form, r => {
             if (r.err)
                 setWarn(r.err)
         })

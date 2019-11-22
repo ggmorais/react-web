@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import { Redirect } from 'react-router-dom'
 
+import config from '../config'
 import Form from './Form'
 import './master.css'
 
@@ -30,7 +31,7 @@ export default props => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    $.post(`${props.api}/login`, form, r => {
+    $.post(`${config.api}/login`, form, r => {
       setWarn()
       if (r.e)
         return setWarn('Error. Please try again later.')

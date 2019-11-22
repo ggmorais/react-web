@@ -7,4 +7,4 @@ const work = {
 }
 
 
-export default home
+export default work

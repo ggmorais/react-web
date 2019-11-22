@@ -1,5 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
+
+import config from '../config'
 import Header from '../Header'
 import Post from './Post'
 import NewPost from './NewPost'
@@ -43,7 +45,7 @@ export default props => {
       form.append('date', new Date())
       
       $.ajax({
-        url: `${props.api}/insertPost`,
+        url: `${config.api}/insertPost`,
         method: 'post',
         data: form,
         cache: false,
@@ -62,7 +64,7 @@ export default props => {
   function getPosts(limit = null) {
     console.log('Getting posts ...')
 
-    $.get(`${props.api}/getPosts`, r => {
+    $.get(`${config.api}/getPosts`, r => {
       setPosts(r.r.map(post => (
         <Post key={post._id} _id={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
       )))
