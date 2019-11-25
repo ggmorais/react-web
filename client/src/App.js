@@ -3,10 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import config from './components/config'
-import Posts from './components/Posts'
 import Login from './components/Login'
 import Register from './components/Register'
-import Header from './components/Header'
 import Error from './components/Error'
 import Home from './components/Home'
 
@@ -29,8 +27,6 @@ export default props => {
     '/main': 'bg_home'
   }
 
-  const USE_HEADER = ['/', '/home', '/account']
-
   document.title = page
 
   return (
@@ -45,9 +41,11 @@ export default props => {
           >
             <Switch location={location}>
               <Route exact path="/" render={props => <Home {...props} />} />
+              <Route path="*" render={props => <Home {...props} />} />
+              <Route path="/account" render={props => <Home {...props} />} />
+              <Route path="/main" render={props => <Home {...props} />} />
               <Route path="/login" render={props => <Login {...props} />} />
               <Route path="/register" render={props => <Register {...props} />} />
-              <Route path="/error" component={Error} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

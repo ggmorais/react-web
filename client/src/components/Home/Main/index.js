@@ -11,6 +11,7 @@ export default props => {
   
   const [newPost, setNewPost] = React.useState({body: '', image: ''})
   const [posts, setPosts] = React.useState([])
+  const [postsData, setPostsData] = React.useState([])
   const userInfos = props.userInfos
 
   React.useEffect(() => {
@@ -52,14 +53,29 @@ export default props => {
     }
   }
 
+  function mountPosts() {
+    var data = postsData.map(post => (
+      <Post key={post._id} _id={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
+    ))
+
+    setPosts(data)
+  }
+
   function getPosts(limit = 50, find = {}) {
     console.log('Getting posts ...')
 
     $.get(`${config.api}/getPosts`, {limit: limit, find: find}, r => {
-      var data = r.r.map(post => (
-        <Post key={post._id} _id={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
-      ))
-      setPosts(data)
+      var oldData = postsData
+
+      // Merge if needed the old data with the new
+      if (!oldData) oldData = r.r
+      else Array.prototype.unshift.apply(oldData, r.r)
+      
+      // Remove duplicates
+      oldData = [...new Set(oldData)]
+
+      setPostsData(oldData)
+      mountPosts()
     })
   }
 
@@ -67,7 +83,7 @@ export default props => {
     <div className="Home-Main">
       <div className="PostViewer">
         <NewPost handleNewPost={handleNewPost} newPost={newPost} handlePublish={handlePublish} />
-        {Array(posts)}
+        {posts}
       </div>
     </div>
   )

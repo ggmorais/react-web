@@ -46,18 +46,25 @@ app.get('/getCommentaries', (req, res) => {
   db.collection(dbs.posts).findOne({_id: ObjectID(req.query._id)}, (e, r) => {
     res.send(Array(r.commentaries)[0])
   })
-  /*db.collection(dbs.posts).findOne({_id: ObjectID(req.query._id)}).toArray((e, r) => {
-    res.send({ e, r })
-  })*/
 })
 
 app.post('/insertCommentary', (req, res) => {
   var userInfos = JSON.parse(req.body.userInfos)
-  db.collection(dbs.posts).updateOne({_id: ObjectID(req.body._id)}, {$push: { commentaries: {_id: new ObjectID(), fullName: userInfos.firstName + ' ' + userInfos.lastName, username: userInfos.username, body: req.body.body, date: req.body.date} }})
+  db.collection(dbs.posts).updateOne({
+    _id: ObjectID(req.body._id)
+  }, 
+  {
+    $push: { 
+      commentaries: {
+        _id: new ObjectID(),
+        fullName: userInfos.firstName + ' ' + userInfos.lastName, 
+        username: userInfos.username, body: req.body.body, 
+        date: req.body.date
+      } 
+    }
+  })
+
   res.send({done: true})
-  /*db.collection(dbs.posts).find({_id: ObjectID(req.body._id)}).toArray((e, r) => {
-    console.log(r)
-  })*/
 })
 
 app.get('/getPosts', (req, res) => {
@@ -85,8 +92,12 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
 })
 
 app.post('/deletePost', (req, res) => {
-  db.collection(dbs.posts).remove({_id: ObjectID(req.body._id)})
-  res.send({done: true})
+  try {
+    db.collection(dbs.posts).remove({_id: ObjectID(req.body._id)})
+    res.send({done: true})
+  } catch (e) {
+    res.send({err: e})
+  }
 })
 
 app.get('/getUsers', (req, res) => {
