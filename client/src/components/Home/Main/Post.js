@@ -49,7 +49,7 @@ export default props => {
       </p>
       <p style={{marginLeft: '15px'}}>{props.body}</p>
       <div className="Post-image">
-        {props.image ? <img src={`${config.api}/public/images/${props.image}`} /> : ''}
+        {props.image ? <img src={`${config.api}/public/post_images/${props.image}`} /> : ''}
       </div>
       <div className="Post-actions">
         <img src={like} className="img_actions"/>

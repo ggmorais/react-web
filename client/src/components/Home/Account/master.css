@@ -1,3 +1,82 @@
 .Account {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  margin: 0px auto;
+}
+
+.Account-UserInfos {
+  width: 98%;
+  height: 250px;
+  background-color: white;
+  box-shadow: 0px 0px 2px #b1b1b1;
+  border-radius: 2px;
+  margin: 30px auto;
+}
+
+.UserInfos-userName {
+
+}
+
+.UserInfos-firstName {
+
+}
+
+.UserInfos-lastName {
   
+}
+
+.UserInfos-infoList {
+  list-style-type: none;
+}
+
+.UserInfos-infoList li {
+  padding: 15px;
+}
+
+.UserInfos-left {
+  float: left;
+  width: 50%;
+}
+
+.UserInfos-left p {
+  font-size: 25px;
+  text-align: center;
+}
+
+.UserInfos-right {
+  float: right;
+  width: 30%;
+  height: 100%;
+  /* padding: 47px; */
+  border: 1px solid #5c7ee9;
+  margin-top: -1px;
+  min-width: 120px;
+}
+
+.UserInfos-right p {
+  text-align: center;
+  padding: 5px;
+  background-color: #5c7ee9;
+  font-weight: bold;
+  color: white;
+}
+
+.UserInfos-right-img {
+  width: 70%;
+  height: 70%;
+  margin: 0px auto;
+  height: 89%;
+}
+
+.UserInfos-right-img img {
+  width: 100%;
+  height: 100%;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  margin-top: 16px;
 }

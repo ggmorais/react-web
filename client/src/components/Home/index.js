@@ -1,6 +1,4 @@
 import React from 'react'
-import { Route, Router, Switch } from 'react-router-dom'
-import {TransitionGroup, CSSTransition} from 'react-transition-group'
 import Header from '../Header'
 import Main from './Main'
 import Account from './Account'

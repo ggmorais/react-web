@@ -77,7 +77,7 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
   try {
     if (req.file) {
       var fileName = req.file.filename + '.png'
-      var pathName = './public/images/' + fileName
+      var pathName = './public/post_images/' + fileName
       fs.rename(req.file.path, pathName, err => {
         if (err) res.send({err: err})
         db.collection(dbs.posts).insertOne({...req.body, image: fileName})
@@ -100,9 +100,9 @@ app.post('/deletePost', (req, res) => {
   }
 })
 
-app.get('/getUsers', (req, res) => {
-  db.collection(dbs.users).find(req.query).toArray((e, r) => {
-    res.send(r)
+app.post('/getUsers', (req, res) => {
+  db.collection(dbs.users).find(req.body).toArray((e, r) => {
+    res.send({e, r})
   })
 })
 
