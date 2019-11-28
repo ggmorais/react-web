@@ -9,11 +9,12 @@
 
 .Account-UserInfos {
   width: 98%;
-  height: 250px;
+  min-width: 420px;
   background-color: white;
   box-shadow: 0px 0px 2px #b1b1b1;
   border-radius: 2px;
   margin: 30px auto;
+  height: 200px;
 }
 
 .UserInfos-userName {
@@ -38,22 +39,35 @@
 
 .UserInfos-left {
   float: left;
-  width: 50%;
+  width: 69%;
 }
 
-.UserInfos-left p {
+.UserInfos-Fullname {
   font-size: 25px;
   text-align: center;
+  margin-top: 40px;
+}
+
+.UserInfos-details {
+  text-align: center;
+  margin-top: 35px;
+  width: 90%;
+  margin: 11px auto;
+  /* min-width: 282px; */
+}
+
+.UserInfos-desc {
+  margin-top: 15px;
+  font-style: italic;
+  color: grey;
+  font-size: 13px;
 }
 
 .UserInfos-right {
   float: right;
   width: 30%;
+  border: 1px solid #5c7ee9; 
   height: 100%;
-  /* padding: 47px; */
-  border: 1px solid #5c7ee9;
-  margin-top: -1px;
-  min-width: 120px;
 }
 
 .UserInfos-right p {
@@ -68,7 +82,7 @@
   width: 70%;
   height: 70%;
   margin: 0px auto;
-  height: 89%;
+  height: 86%;
 }
 
 .UserInfos-right-img img {
@@ -79,4 +93,14 @@
   max-height: 100%;
   max-width: 100%;
   margin-top: 16px;
+}
+
+.UserInfos-changeImg {
+  position: absolute;
+  margin-top: 135px;
+  margin-left: -46px;
+  height: 25px;
+  font-size: 20px;
+  border: 2px solid #5c7ee9;
+  background-color: white;
 }
