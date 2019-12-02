@@ -9,7 +9,7 @@ export default props => {
 
   const [profile, setProfile] = React.useState();
   const [newImage, setNewImage] = React.useState();
-  const [something, setSomething] = React.useState('zzz');
+  const [modifies, setModifies] = React.useState();
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
 
   React.useEffect(() => {
@@ -17,27 +17,32 @@ export default props => {
   }, []);
 
   const handleImageChange = (e) => {
-    setSomething('eeeeeeeee')
-    console.log('switching ...')
     setNewImage(e.target.files[0]);
   }
 
-  const change = e => {
-    setSomething('new stuff');
+  const storeChanges = e => {
+    const {name, value} = e.target;
+    setModifies({[name]: value});
+  }
+
+  const saveChanges = e => {
+    $.post(config.api + '/modifyUser', {});
   }
 
   const getProfile = () => {
     $.post(config.api + '/getUsers', {username: userInfos.username}, r => {
-      let data = r.r[0];
-      setProfile(<UserInfos key={data._id} newImage={newImage} inf={data} handleImageChange={handleImageChange} />);
-      // setProfile(<UserInfos change={change} something={something} key={data._id} newImage={newImage} inf={data} handleImageChange={handleImageChange} />)
+      setProfile(r.r[0]);
     });
   }
 
   return (
     <div className="Account">
-      {profile ? profile : null }
-      {/* <UserInfos change={change} something={something} /> */}
+      {profile &&
+      <UserInfos  
+        newImage={newImage} 
+        inf={profile}
+        handleImageChange={handleImageChange} 
+      />}
     </div>
   );
 

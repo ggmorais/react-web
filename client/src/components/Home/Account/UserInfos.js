@@ -7,8 +7,11 @@ export default props => {
 
   const inf = props.inf
 
+  console.log(props.newImage)
+
   return (
-    <div className="Account-UserInfos">
+    <div>
+      <div className="Account-UserInfos">
         <div className="UserInfos-left">
           <p>{props.something}</p>
           <p className="UserInfos-Fullname">{inf.firstName} {inf.lastName}</p>
@@ -20,13 +23,14 @@ export default props => {
         </div>
         <div className="UserInfos-right">
           <div className="UserInfos-right-img">
-            <img src={props.newImage ? props.newImage : inf.image ? `${config.api}/public/user_images/${inf.image}` : img_default} />
+            <img src={props.newImage ? URL.createObjectURL(props.newImage) : inf.image ? `${config.api}/public/user_images/${inf.image}` : img_default} />
             <label htmlFor="Input-changeImg" className="UserInfos-changeImg">Change</label>
           </div>
           <input type="file" id="Input-changeImg" onChange={props.handleImageChange} />
           <p>{inf.username}</p>
         </div>
-        
+      </div>
+      <p className={'UserInfos-warn ' + props.saved ? 'green' : 'red'}>{props.warn}</p>
     </div>
   )
 

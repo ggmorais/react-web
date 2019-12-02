@@ -9,6 +9,8 @@ export default props => {
     textareaAutoHeight('.NewPost-textdiv')
   }, [])
   
+  console.log(props.newPost.image)
+
   return (
     <div className="NewPost">
       <form>

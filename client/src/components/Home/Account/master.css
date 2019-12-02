@@ -93,14 +93,36 @@
   max-height: 100%;
   max-width: 100%;
   margin-top: 16px;
+  box-shadow: 0px 0px 3px #000000a6;
 }
 
 .UserInfos-changeImg {
   position: absolute;
   margin-top: 135px;
-  margin-left: -46px;
+  margin-left: -74px;
   height: 25px;
   font-size: 20px;
-  /* border: 2px solid #5c7ee9; */
-  background-color: white;
+  text-shadow: 1px 1px 2px black;
+  background-color: transparent;
+  color: white
 }
+
+.UserInfos-changeImg:hover {
+  color: #5c7ee9;
+}
+
+.UserInfos-warn {
+  text-align: center;
+  font-size: 23px;
+  margin-top: -20px;
+  font-style: italic;
+}
+
+.red {
+  color: #ff7070;
+}
+
+.green {
+  color: #7af477;
+}
+
