@@ -8,25 +8,36 @@ import './master.css'
 export default props => {
 
   const [profile, setProfile] = React.useState();
+  const [newImage, setNewImage] = React.useState();
+  const [something, setSomething] = React.useState('zzz');
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
 
   React.useEffect(() => {
-    getProfile()
-  }, [])
+    getProfile();
+  }, []);
 
   const handleImageChange = (e) => {
-    console.log('Changing the user image ...')
+    setSomething('eeeeeeeee')
+    console.log('switching ...')
+    setNewImage(e.target.files[0]);
+  }
+
+  const change = e => {
+    setSomething('new stuff');
   }
 
   const getProfile = () => {
     $.post(config.api + '/getUsers', {username: userInfos.username}, r => {
-      setProfile(r.r.map(data => <UserInfos key={data._id} inf={data} handleImageChange={handleImageChange} />))
+      let data = r.r[0];
+      setProfile(<UserInfos key={data._id} newImage={newImage} inf={data} handleImageChange={handleImageChange} />);
+      // setProfile(<UserInfos change={change} something={something} key={data._id} newImage={newImage} inf={data} handleImageChange={handleImageChange} />)
     });
   }
 
   return (
     <div className="Account">
-      {profile ? profile : null}
+      {profile ? profile : null }
+      {/* <UserInfos change={change} something={something} /> */}
     </div>
   );
 

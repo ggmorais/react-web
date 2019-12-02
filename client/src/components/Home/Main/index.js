@@ -19,7 +19,7 @@ export default props => {
   }, [])
 
   function handleNewPost(e) {
-    const {name, value} = e.target
+    const {name, value} = e.target;
 
     setNewPost({
       ...newPost,
@@ -29,7 +29,7 @@ export default props => {
 
   function handlePublish() {
     if (Object.keys(newPost).length > 0) {
-      var form = new FormData()
+      const form = new FormData()
       form.append('image', newPost.image)
       form.append('body', newPost.body)
       form.append('username', userInfos.username)
@@ -53,37 +53,52 @@ export default props => {
     }
   }
 
-  function mountPosts() {
-    var data = postsData.map(post => (
-      <Post key={post._id} _id={post._id} username={post.username} owner={post.owner} body={post.body} image={post.image} date={post.date} />
-    ))
-
-    setPosts(data)
-  }
 
   function getPosts(limit = 50, find = {}) {
     console.log('Getting posts ...')
 
     $.get(`${config.api}/getPosts`, {limit: limit, find: find}, r => {
-      var oldData = postsData
+      let clonedData = [...postsData]
+      clonedData.push(r);
+      setPostsData(clonedData[0])
 
-      // Merge if needed the old data with the new
-      if (!oldData) oldData = r.r
+      //let clonedData = [...postsData];
+      //clonedData.push(r.r)
+
+      // console.log(clonedData)
+  
+      
+      
+      //Merge if needed the old data with the new
+      /*if (!oldData) oldData = r.r
       else Array.prototype.unshift.apply(oldData, r.r)
       
       // Remove duplicates
       oldData = [...new Set(oldData)]
 
-      setPostsData(oldData)
-      mountPosts()
+      setPostsData(oldData)*/
     })
   }
 
   return (
     <div className="Home-Main">
       <div className="PostViewer">
-        <NewPost handleNewPost={handleNewPost} newPost={newPost} handlePublish={handlePublish} />
-        {posts}
+        <NewPost 
+          handleNewPost={handleNewPost} 
+          newPost={newPost} 
+          handlePublish={handlePublish} 
+        />
+        {postsData.length && postsData.map(post => (
+          <Post 
+            key={post._id} 
+            _id={post._id} 
+            username={post.username} 
+            owner={post.owner} 
+            body={post.body} 
+            image={post.image} 
+            date={post.date} 
+          />
+        ))}
       </div>
     </div>
   )

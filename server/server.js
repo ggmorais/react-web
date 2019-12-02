@@ -69,7 +69,9 @@ app.post('/insertCommentary', (req, res) => {
 
 app.get('/getPosts', (req, res) => {
   db.collection(dbs.posts).find(req.query.find).limit(parseInt(req.query.limit)).sort({_id: -1}).toArray((e, r) => {
-    res.send({ e, r })
+    console.log(r)
+    // res.send({data: [{a: 123}, {b: 321}, {c: 444}]})
+    res.send(r)
   })
 })
 
