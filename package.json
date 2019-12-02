@@ -12,9 +12,13 @@
  "author": "",
  "license": "ISC",
  "devDependencies": {
-  "concurrently": "^3.5.1"
+  "concurrently": "^3.5.1",
+  "nodemon": "^1.19.4"
  },
  "dependencies": {
+  "react": "^16.11.0",
+  "react-dom": "^16.11.0",
+  "react-scripts": "3.2.0",
   "csshake": "^1.5.3",
   "jquery": "^3.4.1",
   "mongoose": "^5.7.9",
@@ -23,6 +27,8 @@
   "react-router-dom": "^5.1.2",
   "react-transition-group": "^4.3.0",
   "reshake": "^1.2.1",
-  "styled-components": "^4.4.1"
+  "styled-components": "^4.4.1",
+  "cors": "^2.8.5",
+  "express": "^4.17.1"
  }
 }
