@@ -58,25 +58,16 @@ export default props => {
     console.log('Getting posts ...')
 
     $.get(`${config.api}/getPosts`, {limit: limit, find: find}, r => {
-      let clonedData = [...postsData]
-      clonedData.push(r);
-      setPostsData(clonedData[0])
+      let oldData = postsData;
 
-      //let clonedData = [...postsData];
-      //clonedData.push(r.r)
-
-      // console.log(clonedData)
-  
-      
-      
       //Merge if needed the old data with the new
-      /*if (!oldData) oldData = r.r
-      else Array.prototype.unshift.apply(oldData, r.r)
+      if (!oldData) oldData = r
+      else Array.prototype.unshift.apply(oldData, r)
       
       // Remove duplicates
       oldData = [...new Set(oldData)]
 
-      setPostsData(oldData)*/
+      setPostsData(oldData)
     })
   }
 

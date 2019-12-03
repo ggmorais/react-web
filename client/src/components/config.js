@@ -3,8 +3,8 @@ const home = {
 }
 
 const work = {
-  api: 'http://172.21.101.230:3001'
+  api: 'http://172.21.102.230:3001'
 }
 
 
-export default home
+export default work
