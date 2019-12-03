@@ -92,6 +92,24 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
   }
 })
 
+app.post('/modifyUser', upload.single('image'), (req, res) => {
+  try {
+    if (req.file) {
+      var fileName = req.file.filename + '.png'
+      var pathName = './public/user_images/' + fileName
+      fs.rename(req.file.path, pathName, err => {
+        if (err) res.send({err: err})
+        db.collection(dbs.users).updateOne({username: req.body.username}, {...req.body.updated, image: fileName});
+      })
+    } else {
+      db.collection(dbs.users).updateOne({username: req.body.username}, {...req.body.updated})
+    }
+    res.send({done: true})
+  } catch (e) {
+    res.send({err: e})
+  }
+})
+
 app.post('/deletePost', (req, res) => {
   try {
     db.collection(dbs.posts).remove({_id: ObjectID(req.body._id)})

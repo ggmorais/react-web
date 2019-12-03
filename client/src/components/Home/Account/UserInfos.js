@@ -5,9 +5,7 @@ import img_default from '../../assets/img_default.png'
 
 export default props => {
 
-  const inf = props.inf
-
-  console.log(props.newImage)
+  const inf = props.inf;
 
   return (
     <div>
@@ -23,14 +21,14 @@ export default props => {
         </div>
         <div className="UserInfos-right">
           <div className="UserInfos-right-img">
-            <img src={props.newImage ? URL.createObjectURL(props.newImage) : inf.image ? `${config.api}/public/user_images/${inf.image}` : img_default} />
+            <img src={props.modifies.image ? URL.createObjectURL(props.modifies.image) : inf.image ? `${config.api}/public/user_images/${inf.image}` : img_default} />
             <label htmlFor="Input-changeImg" className="UserInfos-changeImg">Change</label>
           </div>
-          <input type="file" id="Input-changeImg" onChange={props.handleImageChange} />
+          <input name="image" type="file" id="Input-changeImg" onChange={props.storeChanges} />
           <p>{inf.username}</p>
         </div>
       </div>
-      <p className={'UserInfos-warn ' + props.saved ? 'green' : 'red'}>{props.warn}</p>
+      <p onClick={props.sendChanges} className={`UserInfos-warn ${props.warn.saved ? 'green' : 'red'}`}>{props.warn.text}</p>
     </div>
   )
 
