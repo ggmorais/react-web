@@ -79,7 +79,6 @@ app.get('/getPosts', (req, res) => {
 })
 
 
-
 app.post('/modifyUserImage', upload.single('image'), (req, res) => {
   try {
     if (req.file) {
@@ -99,8 +98,6 @@ app.post('/modifyUserImage', upload.single('image'), (req, res) => {
 })
 
 
-
-
 app.post('/insertPost', upload.single('image'), (req, res) => {
   try {
     if (req.file) {
@@ -118,7 +115,6 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
     res.send({err: e})
   }
 })
-
 
 
 app.post('/deletePost', (req, res) => {
@@ -145,6 +141,46 @@ app.post('/insertUser', (req, res) => {
   })
 
 })
+
+app.post('/insertLikes', (req, res) => {
+  // post id
+  // username
+  // like -1 ~ 1
+
+  var {_id, type, username} = req.body;
+  type = parseInt(type);
+  console.log('type = ' + type)
+  db.collection(dbs.posts).findOne({_id: ObjectID(_id)}, (e, r) => {
+    if (type > 0) {
+      db.collection(dbs.posts).updateOne(
+        {_id: ObjectID(_id)},
+        {$pull: {dislikeList: username}}
+      );
+      db.collection(dbs.posts).updateOne(
+        {_id: ObjectID(_id)},
+        {$addToSet: {likeList: username}}
+      );
+      console.log('Likeeeeeeee')
+    }
+    if (type < 0) {
+      db.collection(dbs.posts).updateOne(
+        {_id: ObjectID(_id)},
+        {$pull: {likeList: username}}
+      );
+      db.collection(dbs.posts).updateOne(
+        {_id: ObjectID(_id)},
+        {$addToSet: {dislikeList: username}}
+      );
+    } else if (type === 0) {
+      db.collection(dbs.posts).updateOne(
+        {_id: ObjectID(_id)},
+        {$pull: {likeList: username, dislikeList: username}}
+      );
+    }
+  });
+
+})
+
 
 app.post('/login', (req, res) => {
   db.collection(dbs.users).find(req.body).toArray((e, r) => {

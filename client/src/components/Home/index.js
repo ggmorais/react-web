@@ -20,6 +20,8 @@ export default props => {
       let name = document.location.pathname.substr(1)
       name = name[0].toUpperCase() + name.substr(1)
       if (pages[name]) setPage(name)
+    } else {
+      setPage('Main');
     }
   }, [])
 

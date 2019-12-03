@@ -9,7 +9,7 @@ export default props => {
   const inf = props.inf;
 
   inf.desc = 'Info info Info info Info info Info info Info info Info info Info info Info info Info info Info info Info info Info info ';
-  inf.age = 18
+  inf.age = 18;
 
   return (
     <div>
@@ -40,6 +40,6 @@ export default props => {
       </div>
       <p onClick={props.sendChanges} className={`UserInfos-warn ${props.warn.saved ? 'green' : 'red'}`}>{props.warn.text}</p>
     </div>
-  )
+  );
 
 }

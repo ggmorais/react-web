@@ -103,6 +103,11 @@ export default props => {
     })
   }
 
+  const handleLike = (id, type) => {
+    $.post(`${config.api}/insertLikes`, {_id: id, type: type, username: userInfos.username}, r => {
+      console.log(r);
+    })
+  }
 
   return (
     <div className="Home-Main">
@@ -123,7 +128,11 @@ export default props => {
             owner={post.owner} 
             body={post.body} 
             image={post.image} 
-            date={post.date} 
+            date={post.date}
+            dislikeList={post.dislikeList}
+            likeList={post.likeList}
+            handleLike={handleLike}
+            userInfos={userInfos}
           />
         ))}
       </div>

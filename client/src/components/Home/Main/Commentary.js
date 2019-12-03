@@ -8,10 +8,12 @@ export default props => {
   var date = props.infos.date.split(' ');
   date = date[4].substr(0, 5) + ' ' + date[0]
 
+  console.log(props.infos)
+
   return (
     <div key={props.infos._id} className="Commentary">
       <div className="Comment-owner-box">
-          <img className="img" src={props.infos.image ? `${config.api}/public/images/users/${props.infos.image}` : img_default} />
+          <img className="img" src={`${config.api}/public/user_images/${props.infos.username}.png`} />
         <a className="infos">
           <span className="owner">{props.infos.fullName.split(' ')[0]}</span> commented at <span className="date">{date}</span>
         </a>
