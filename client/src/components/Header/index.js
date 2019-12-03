@@ -16,12 +16,12 @@ export default props => {
     if (!menu) {
       $('.Header-menu').animate({
         right: '+=300',
-        height: 'toggle'
+        //height: 'toggle'
       }, 200)
     } else {
       $('.Header-menu').animate({
         right: '-=300',
-        height: 'toggle'
+        // height: 'toggle'
       }, 200)
     }
     

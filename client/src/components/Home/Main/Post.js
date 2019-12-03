@@ -10,8 +10,7 @@ import textareaAutoHeight from '../../tools/textareaAutoHeight'
 
 export default props => {
 
-  const [commentaries, setCommentaries] = React.useState([])
-
+  const [commentData, setCommentData] = React.useState([])
 
   var date = props.date.split(' ');
   var date = date[4].substr(0, 5) + ' ' + date[0]
@@ -24,20 +23,7 @@ export default props => {
     console.log('Getting commentaries ...')
 
     $.get(`${config.api}/getCommentaries`, {_id: props._id}, r => {
-      setCommentaries(Object.values(r).map(r => (
-        <Commentary key={r._id} infos={r} />
-      )))
-    })
-  }
-
-  function deletePost() {
-    $.post(`${config.api}/deletePost`, {_id: props._id}, r => {
-      var id = '#' + props._id
-
-      $(id).fadeOut('slow')
-      setTimeout(() => {
-        $(id).remove()
-      }, 1000)
+      setCommentData(r);
     })
   }
 
@@ -45,7 +31,7 @@ export default props => {
     <div className="Post" id={props._id}>
       <p style={{padding: '15px', fontSize: '15px', color: '#00000073'}}>
         <b style={{color: '#5c7ee9db'}}>{props.owner}</b> posted at <b>{date}</b>
-        {props.username === JSON.parse(localStorage.getItem('@react-web/userInfos')).username ? <a onClick={deletePost} style={{cursor: 'pointer', float: 'right'}}>Delete</a> : null}
+        {props.username === JSON.parse(localStorage.getItem('@react-web/userInfos')).username ? <a onClick={props.deletePost.bind(this, props._id)} style={{cursor: 'pointer', float: 'right'}}>Delete</a> : null}
       </p>
       <p style={{marginLeft: '15px'}}>{props.body}</p>
       <div className="Post-image">
@@ -57,7 +43,7 @@ export default props => {
       </div>
       <div className="Commentaries">
         <div className="Commentary-list">
-          {commentaries}
+          {commentData && commentData.map(r => <Commentary key={r._id} infos={r} />)}
         </div>
         <div className="NewCommentary">
           <NewCommentary _id={props._id} getCommentaries={getCommentaries} />
