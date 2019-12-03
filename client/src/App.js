@@ -11,9 +11,7 @@ import Home from './components/Home'
 
 export default props => {
 
-  const [api, setApi] = React.useState(config.api)
   const [page, setPage] = React.useState(document.location.pathname)
-  const [bg, setBg] = React.useState('bg_react')
 
   React.useEffect(() => {
     setPage(document.location.pathname.substr(1).toUpperCase())
@@ -41,11 +39,12 @@ export default props => {
           >
             <Switch location={location}>
               <Route exact path="/" render={props => <Home {...props} />} />
-              <Route path="*" render={props => <Home {...props} />} />
+              
               <Route path="/account" render={props => <Home {...props} />} />
               <Route path="/main" render={props => <Home {...props} />} />
               <Route path="/login" render={props => <Login {...props} />} />
               <Route path="/register" render={props => <Register {...props} />} />
+              <Route path="*" render={props => <Home {...props} />} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

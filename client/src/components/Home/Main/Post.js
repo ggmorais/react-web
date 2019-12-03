@@ -30,6 +30,9 @@ export default props => {
   return (
     <div className="Post" id={props._id}>
       <p style={{padding: '15px', fontSize: '15px', color: '#00000073'}}>
+        <div className="Post-userImage">
+          <img src={`${config.api}/public/user_images/${props.username}.png`} />
+        </div>
         <b style={{color: '#5c7ee9db'}}>{props.owner}</b> posted at <b>{date}</b>
         {props.username === JSON.parse(localStorage.getItem('@react-web/userInfos')).username ? <a onClick={props.deletePost.bind(this, props._id)} style={{cursor: 'pointer', float: 'right'}}>Delete</a> : null}
       </p>

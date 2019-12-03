@@ -7,6 +7,11 @@ import './master.css'
 
 export default props => {
 
+  if (!localStorage.getItem('@react-web/auth')) return <div/>
+  
+  const [page, setPage] = React.useState();
+  const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
+
   React.useEffect(() => {
     if (!localStorage.getItem('@react-web/auth')) {
       props.history.push('/login')
@@ -18,10 +23,11 @@ export default props => {
     }
   }, [])
 
-  if (!localStorage.getItem('@react-web/auth')) return <div/>
-  
-  const [page, setPage] = React.useState('Main')
-  const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'))
+  // Change the URL without reloading the page
+  React.useEffect(() => {
+    window.history.pushState(page, page, page);
+  }, [page])
+
   const pages = {
     Main: <Main userInfos={userInfos} />,
     Account: <Account />

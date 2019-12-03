@@ -15,16 +15,13 @@ export default props => {
     setMenu(menu ? false : true)
     if (!menu) {
       $('.Header-menu').animate({
-        right: '+=300',
-        //height: 'toggle'
+        right: '+=300'
       }, 200)
     } else {
       $('.Header-menu').animate({
-        right: '-=300',
-        // height: 'toggle'
+        right: '-=300'
       }, 200)
     }
-    
   }
 
   function exit() {

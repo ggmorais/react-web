@@ -91,7 +91,7 @@ input[type="file"] {
 .Warn-message {
   text-align: center;
   font-size: 22px;
-  padding-top: 33px;
+  padding: 30px;
 }
 
 .Warn {

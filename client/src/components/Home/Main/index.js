@@ -39,7 +39,7 @@ export default props => {
       
       $.ajax({
         url: `${config.api}/insertPost`,
-        method: 'post',
+        method: 'POST',
         data: form,
         cache: false,
         contentType: false,

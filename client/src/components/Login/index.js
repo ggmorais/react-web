@@ -14,7 +14,7 @@ export default props => {
 
   React.useEffect(() => {
     if (localStorage.getItem('@react-web/auth'))
-        props.history.push('/')
+      props.history.push('/')
   }, [])
 
   if (localStorage.getItem('@react-web/auth')) return <div/>

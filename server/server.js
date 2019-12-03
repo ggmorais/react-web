@@ -42,6 +42,10 @@ MG.connect(dbs.host, (err, database) => {
   app.listen(port)
 })
 
+app.get('/connection', (req, res) => {
+  res.send({status: 200})
+})
+
 app.get('/getCommentaries', (req, res) => {
   db.collection(dbs.posts).findOne({_id: ObjectID(req.query._id)}, (e, r) => {
     res.send(Array(r.commentaries)[0])
@@ -74,6 +78,29 @@ app.get('/getPosts', (req, res) => {
   })
 })
 
+
+
+app.post('/modifyUserImage', upload.single('image'), (req, res) => {
+  try {
+    if (req.file) {
+      let fileName = req.body.username + '.png'
+      let pathName = './public/user_images/' + fileName
+      fs.rename(req.file.path, pathName, err => {
+        if (err) res.send({err: err})
+        db.collection(dbs.users).updateOne({username: req.body.username}, {$set: {image: fileName}})
+      })
+    } else {
+      db.collection(dbs.users).updateOne({username: req.body.username}, {$set: {image: null}})
+    }
+    res.send({done: true})
+  } catch (e) {
+    res.send({err: e})
+  }
+})
+
+
+
+
 app.post('/insertPost', upload.single('image'), (req, res) => {
   try {
     if (req.file) {
@@ -92,23 +119,7 @@ app.post('/insertPost', upload.single('image'), (req, res) => {
   }
 })
 
-app.post('/modifyUser', upload.single('image'), (req, res) => {
-  try {
-    if (req.file) {
-      var fileName = req.file.filename + '.png'
-      var pathName = './public/user_images/' + fileName
-      fs.rename(req.file.path, pathName, err => {
-        if (err) res.send({err: err})
-        db.collection(dbs.users).updateOne({username: req.body.username}, {...req.body.updated, image: fileName});
-      })
-    } else {
-      db.collection(dbs.users).updateOne({username: req.body.username}, {...req.body.updated})
-    }
-    res.send({done: true})
-  } catch (e) {
-    res.send({err: e})
-  }
-})
+
 
 app.post('/deletePost', (req, res) => {
   try {
