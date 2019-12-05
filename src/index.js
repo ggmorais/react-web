@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Route, BrowserRouter } from 'react-router-dom'
+import { Route, BrowserRouter, HashRouter } from 'react-router-dom'
 
 import App from './App'
 import './master.css'
 
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter basename="/">
     <Route path="/" component={App} />
-  </BrowserRouter>,
+  </HashRouter>,
   document.querySelector('#root')
 )

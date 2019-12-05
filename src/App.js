@@ -11,35 +11,32 @@ import Home from './components/Home'
 
 export default props => {
 
-  const [page, setPage] = React.useState(document.location.pathname)
+  const [page, setPage] = React.useState(window.location.hash)
 
   React.useEffect(() => {
-    setPage(document.location.pathname.substr(1).toUpperCase())
-  }, [document.location.pathname])
+    setPage(window.location.pathname.substr(1).toUpperCase())
+  }, [window.location.pathname])
 
   const BG = {
-    '/login': 'bg_react',
-    '/register': 'bg_react',
-    '/account': 'bg_home',
-    '/home': 'bg_home',
-    '/main': 'bg_home'
+    '#/login': 'bg_react',
+    '#/register': 'bg_react', 
+    '#/account': 'bg_home',
+    '#/home': 'bg_home',
+    '#/main': 'bg_home'
   }
-
-  document.title = page
 
   return (
     <div className="App">
-      <div className={'Background ' + BG[document.location.pathname]}></div>
+      <div className={'Background ' + BG[window.location.hash]}></div>
       <Route render={({location}) => (
         <TransitionGroup>
           <CSSTransition
-            key={location.key}
+            key={location.pathname}
             timeout={450} 
             classNames="fade"
           >
             <Switch location={location}>
               <Route exact path="/" render={props => <Home {...props} />} />
-              
               <Route path="/account" render={props => <Home {...props} />} />
               <Route path="/main" render={props => <Home {...props} />} />
               <Route path="/login" render={props => <Login {...props} />} />
