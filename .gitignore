@@ -8,6 +8,7 @@
 .pnp.js
 
 /server
+server/
 
 # testing
 /coverage
