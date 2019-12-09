@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 
 import config from '../config'
+import local from '../location'
 import Form from './Form'
 import './master.css'
 import background from '../assets/bg_react.png'
@@ -31,7 +32,8 @@ export default props => {
 
     React.useEffect(() => {
         if (localStorage.getItem('@react-web/auth'))
-            props.history.push('/home')
+            //props.history.push('/home')
+            local.set('main')
     }, [])
 
     if (localStorage.getItem('@react-web/auth')) return <div/>

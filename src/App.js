@@ -7,27 +7,28 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Error from './components/Error'
 import Home from './components/Home'
+import local from './components/location'
 
 
 export default props => {
 
-  const [page, setPage] = React.useState(window.location.hash)
+  const [page, setPage] = React.useState(local.name())
 
   React.useEffect(() => {
-    setPage(window.location.pathname.substr(1).toUpperCase())
-  }, [window.location.pathname])
+    setPage('Page changed! ', local.name())
+  }, [local.name()])
 
   const BG = {
-    '#/login': 'bg_react',
-    '#/register': 'bg_react', 
-    '#/account': 'bg_home',
-    '#/home': 'bg_home',
-    '#/main': 'bg_home'
+    Login: 'bg_react',
+    Register: 'bg_react', 
+    Account: 'bg_home',
+    Home: 'bg_home',
+    Main: 'bg_home'
   }
 
   return (
     <div className="App">
-      <div className={'Background ' + BG[window.location.hash]}></div>
+      <div className={'Background ' + BG[local.name()]}></div>
       <Route render={({location}) => (
         <TransitionGroup>
           <CSSTransition

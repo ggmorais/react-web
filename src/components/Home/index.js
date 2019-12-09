@@ -2,38 +2,40 @@ import React from 'react'
 import Header from '../Header'
 import Main from './Main'
 import Account from './Account'
+import local from '../location'
 import './master.css'
 
 
 export default props => {
 
-  if (!localStorage.getItem('@react-web/auth')) return <div/>
-  
   const [page, setPage] = React.useState();
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
-
-  React.useEffect(() => {
-    if (!localStorage.getItem('@react-web/auth')) {
-      props.history.push('/login')
-    }
-    if (document.location.pathname.length > 1) {
-      let name = document.location.pathname.substr(1)
-      name = name[0].toUpperCase() + name.substr(1)
-      if (pages[name]) setPage(name)
-    } else {
-      setPage('Main');
-    }
-  }, [])
-
-  // Change the URL without reloading the page
-  React.useEffect(() => {
-    window.history.pushState(page, page, page);
-  }, [page])
 
   const pages = {
     Main: <Main userInfos={userInfos} />,
     Account: <Account />
   }
+
+  React.useEffect(() => {
+    if (!localStorage.getItem('@react-web/auth')) {
+      local.set('login')
+    }
+
+    if (local.name()) {
+      if (pages[local.name()]) setPage(local.name())
+    } else {
+      local.set('main')
+    }
+  }, [])
+
+  if (!localStorage.getItem('@react-web/auth')) return <div/>
+
+  // Change the URL without reloading the page
+  React.useEffect(() => {
+    if (pages[page]) local.set(page)
+  }, [page])
+
+  
 
   return (
     <div className="Home">

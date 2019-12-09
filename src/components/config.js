@@ -1,5 +1,5 @@
 const home = {
-  api: 'http://10.0.0.15:5000'
+  api: 'http://10.0.0.16:5000'
 }
 
 const work = {
@@ -11,4 +11,4 @@ const prod = {
 }
 
 
-export default prod;
+export default home;
