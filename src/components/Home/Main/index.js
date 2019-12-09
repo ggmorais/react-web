@@ -19,7 +19,7 @@ export default props => {
     getPosts()
   }, [])
 
-  function handleNewPost(e) {
+  const handleNewPost = (e) => {
     const {name, value} = e.target;
 
     setNewPost({
@@ -28,7 +28,7 @@ export default props => {
     })
   }
 
-  function handlePublish() {
+  const handlePublish = () => {
     if (Object.keys(newPost).length > 0) {
       const form = new FormData()
       form.append('image', newPost.image)
@@ -55,7 +55,7 @@ export default props => {
   }
 
 
-  function getPosts(limit = 50, find = {}) {
+  const getPosts = (limit = 50, find = {}) => {
     console.log('Getting posts ...')
 
     $.get(`${config.api}/getPosts`, {limit: limit, find: find}, r => {
@@ -80,7 +80,7 @@ export default props => {
     })
   }
 
-  function deletePost(id) {
+  const deletePost = (id) => {
     $.post(`${config.api}/deletePost`, {_id: id}, r => {
       let target = '#' + id
       let data = [...postsData];
@@ -104,6 +104,7 @@ export default props => {
   }
 
   const handleLike = (id, type) => {
+    
     $.post(`${config.api}/insertLikes`, {_id: id, type: type, username: userInfos.username}, r => {
       console.log(r);
     })

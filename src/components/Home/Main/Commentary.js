@@ -8,7 +8,7 @@ export default props => {
   var date = props.infos.date.split(' ');
   date = date[4].substr(0, 5) + ' ' + date[0]
 
-  console.log(props.infos)
+  // console.log(props.infos)
 
   return (
     <div key={props.infos._id} className="Commentary">
