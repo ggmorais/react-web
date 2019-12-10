@@ -1,13 +1,14 @@
 .Header {
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    margin: 0px auto;
-    background-color: #444444;
-    color: white;
-    padding: 0px;
-    border: 0px;
-    height: 49px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  margin: 0px auto;
+  background-color: #444444;
+  color: white;
+  padding: 0px;
+  border: 0px;
+  height: 49px;
+  z-index: 50;
 }
 
 #hmenu {
