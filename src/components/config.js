@@ -11,4 +11,4 @@ const prod = {
 }
 
 
-export default prod;
+export default home;

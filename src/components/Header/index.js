@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import $ from 'jquery'
 
+import local from '../location';
+
 import btn_options from '../assets/btn_options_white.png'
 import btn_close from '../assets/btn_close.png'
 import './master.css'
@@ -25,8 +27,9 @@ export default props => {
   }
 
   function exit() {
-    localStorage.removeItem('@react-web/auth')
-    document.location.reload()
+    localStorage.removeItem('@react-web/auth');
+    local.set('login');
+    window.location.reload();
   }
 
   return (
@@ -38,8 +41,8 @@ export default props => {
         <li><a className="items">Opt3</a></li>            
         <div className="Header-menu">
           <ul id="vmenu">
-            {/* <li><Link to="/home/account">My account</Link></li> */}
-            <li onClick={() => props.setPage('Profile')}>Profile</li>
+            <li onClick={() => {props.setPage('Main'); showMenu()}}>Home</li>
+            <li onClick={() => {props.setPage('Profile'); showMenu()}}>Profile</li>
             <li>Friends</li>
             <li onClick={exit}>Exit</li>
           </ul>

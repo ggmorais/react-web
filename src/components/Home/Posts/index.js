@@ -3,18 +3,23 @@ import $ from 'jquery';
 import config from '../../config';
 import Content from './Content';
 import Warn from '../../Warn';
+
 import '../Main/master.css';
 
+import Loading from '../../Loading';
 
-export default props => {
+
+const Posts = props => {
 
   const [postsData, setPostsData] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
 
   const getPosts = (where = null) => {
     $.get(`${config.api}/getPosts`, r => {
       setPostsData(r);
+      setIsLoading(false);
     })
   }
 
@@ -31,7 +36,6 @@ export default props => {
           data.splice(i, id);
         }
       }
-
       setPostsData(data);
     })
   }
@@ -40,9 +44,11 @@ export default props => {
     getPosts();
   })
   
+  console.log(postsData);
+
   return (
-    <div className="Post" id={props._id}>
-      {postsData && postsData.map(r => (
+    <div>
+      {postsData ? postsData.map(r => (
         <Content 
           key={r._id}
           _id={r._id}
@@ -56,8 +62,11 @@ export default props => {
           handleLike={handleLike}
           deletePost={deletePost}            
         />
-      ))}
-      <Warn color="#444444" message="We don't have any post to show now. Change it by adding some friends!"/>
+      )) : <Loading />}
+      { (!isLoading && !postsData.length) ? <Warn color="#444444" message="We have nothing to show you now :c. Try comming back later!"/> : null }
     </div>
   )
 }
+
+
+export default Posts;

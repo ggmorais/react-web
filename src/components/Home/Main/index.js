@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import config from '../../config';
 import NewPost from '../NewPost';
-import Post from '../Post';
+import Posts from '../Posts';
 import Warn from '../../Warn';
 import './master.css';
 
@@ -13,7 +13,7 @@ export default props => {
     <div className="Home-Main">
       <div className="PostViewer">
         <NewPost />
-        <Post />
+        <Posts />
       </div>
     </div>
   )

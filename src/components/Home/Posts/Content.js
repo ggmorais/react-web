@@ -4,6 +4,8 @@ import config from '../../config';
 import Commentary from './Commentary';
 import NewCommentary from './NewCommentary';
 
+import './master.scss';
+
 import like from '../../assets/img_like_blue.png';
 import like_black from '../../assets/img_like_black.png';
 import dislike from '../../assets/img_dislike_red.png';
@@ -12,24 +14,27 @@ import dislike_black from '../../assets/img_dislike_black.png'
 
 export default props => {
 
+  const [liked, setLiked] = React.useState(0);
+
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
 
   // Format the date
   var date = props.date.split(' ');
   var date = date[4].substr(0, 5) + ' ' + date[0];
 
+  React.useState(() => {
+    // Verify if the auth user has liked the post
+    if (props.likeList) {
+      if (props.likeList.includes(userInfos.username))
+        setLiked(1);
+    }
 
-  // Verify if the auth user has liked the post
-  var liked = 0
-  if (props.likeList) {
-    if (props.likeList.includes(userInfos.username))
-      liked = 1
-  }
-
-  if (props.dislikeList) {
-    if (props.dislikeList.includes(userInfos.username))
-      liked = -1
-  }
+    if (props.dislikeList) {
+      if (props.dislikeList.includes(userInfos.username))
+        setLiked(-1);
+    }
+  });
+  
   
 
   return (
@@ -58,7 +63,7 @@ export default props => {
 
       <div className="Post-actions">
         <div 
-          onClick={props.handleLike.bind(this, props._id, 1)} 
+          onClick={() => { setLiked(liked > 0 ? 0 : 1); props.handleLike(props._id, 1) }} 
           className="actions" 
           style={{backgroundImage: liked > 0 ? `url("${like}")` : `url("${like_black}")`}}
         >
@@ -66,11 +71,11 @@ export default props => {
         </div>
 
         <div 
-          onClick={props.handleLike.bind(this, props._id, -1)} 
+          onClick={() => { setLiked(liked < 0 ? 0 : -1); props.handleLike(props._id, -1) }} 
           className="actions" 
           style={{backgroundImage: liked < 0 ? `url("${dislike}")` : `url("${dislike_black}")`}}
         >
-          <p>{props.dislikeList && props.dislikeList.length}</p>
+          {<p>{props.dislikeList && props.dislikeList.length}</p>}
         </div>
       </div>
       
@@ -88,11 +93,12 @@ export default props => {
           />
         ))}
 
-        <div className="NewCommentary">
-          <NewCommentary
-            _id={props._id}
-          />
-        </div>
+      </div>
+
+      <div className="NewCommentary">
+        <NewCommentary
+          _id={props._id}
+        />
       </div>
 
 

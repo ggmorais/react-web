@@ -24,12 +24,14 @@ label {
 
 .NewPost {
   min-height: 120px;
+  margin-bottom: 85px
 }
 
 #NewPost-textdiv {
   width: 98%;
   min-height: 80px;
   margin: 5px;
+  padding-top: 15px;
   /* margin-bottom: 40px; */
 }
 
@@ -42,6 +44,8 @@ label {
   margin: 0px auto;
   box-sizing: border-box;
   border: none;
+  border-radius: 15px;
+  background-color: #f9f9f9;
 }
 
 #NewPost-addImage {
@@ -59,6 +63,8 @@ label {
   padding: 10px;
   height: 50px;
   vertical-align: middle;
+  margin-bottom: -32px;
+  margin-top: -12px;
 }
 
 .NewPost a {
@@ -111,6 +117,7 @@ label {
 .Commentary-list {
   max-height: 300px;
   overflow-y: auto;
+  margin-top: 20px
 }
 
 .Commentaries {
@@ -141,10 +148,12 @@ label {
   box-shadow: 0px 0px 2px #00000052;
   margin-top: 8px;
   word-wrap: break-word;
+  /* padding-bottom: 5px; */
 }
 
 .Comment-owner-box {
   font-size: 15px;
+  display: flex;
 }
 
 .Comment-owner-box .date {
@@ -159,6 +168,7 @@ label {
 .Comment-owner-box .infos {
   margin-left: 5px;
   vertical-align: super;
+  margin-top: 10px;
 }
 
 .Comment-userImg {
@@ -168,14 +178,17 @@ label {
 .Comment-owner-box .img {
   width: 30px;
   height: 30px;
-  padding-left: 3px;
-  padding-top: 3px;
-  border-radius: 50%;
+  /* padding-left: 3px; */
+  /* padding-top: 3px; */
+  padding: 5px;
+  border-radius: 30px;
 }
 
 .Comment-body {
   padding: 6px;
   margin-left: 5px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
 }
 
 .Post-userImage img {
@@ -188,12 +201,13 @@ label {
 }
 
 .Post-content {
-    padding: 20px;
-    /* box-shadow: 0px 0px 2px #b1b1b1; */
-    width: 92%;
-    margin: 0px auto;
-    /* margin-top: 20px; */
-    border-radius: 3px;
+  padding: 20px;
+  /* box-shadow: 0px 0px 2px #b1b1b1; */
+  width: 92%;
+  margin: 0px auto;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
 }
 
 .actions {
@@ -202,6 +216,7 @@ label {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  cursor: pointer;
 }
 
 .actions p {
