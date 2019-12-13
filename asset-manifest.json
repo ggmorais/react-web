@@ -1,28 +1,29 @@
 {
   "files": {
-    "main.css": "/react-web/static/css/main.18857603.chunk.css",
-    "main.js": "/react-web/static/js/main.8e9457ec.chunk.js",
-    "main.js.map": "/react-web/static/js/main.8e9457ec.chunk.js.map",
+    "main.css": "/react-web/static/css/main.e0cd6301.chunk.css",
+    "main.js": "/react-web/static/js/main.46842712.chunk.js",
+    "main.js.map": "/react-web/static/js/main.46842712.chunk.js.map",
     "runtime-main.js": "/react-web/static/js/runtime-main.b459cbb4.js",
     "runtime-main.js.map": "/react-web/static/js/runtime-main.b459cbb4.js.map",
-    "static/js/2.c7d3c690.chunk.js": "/react-web/static/js/2.c7d3c690.chunk.js",
-    "static/js/2.c7d3c690.chunk.js.map": "/react-web/static/js/2.c7d3c690.chunk.js.map",
+    "static/js/2.594f8888.chunk.js": "/react-web/static/js/2.594f8888.chunk.js",
+    "static/js/2.594f8888.chunk.js.map": "/react-web/static/js/2.594f8888.chunk.js.map",
     "index.html": "/react-web/index.html",
-    "precache-manifest.9a33a55122c2783b11f2b266268e529d.js": "/react-web/precache-manifest.9a33a55122c2783b11f2b266268e529d.js",
+    "precache-manifest.6a5aefd97c1b60f93f2397f9f8f4a488.js": "/react-web/precache-manifest.6a5aefd97c1b60f93f2397f9f8f4a488.js",
     "service-worker.js": "/react-web/service-worker.js",
-    "static/css/main.18857603.chunk.css.map": "/react-web/static/css/main.18857603.chunk.css.map",
+    "static/css/main.e0cd6301.chunk.css.map": "/react-web/static/css/main.e0cd6301.chunk.css.map",
     "static/media/master.css": "/react-web/static/media/bg_test.d009e410.png",
     "static/media/img_addimage.png": "/react-web/static/media/img_addimage.da1ae006.png",
     "static/media/img_default.png": "/react-web/static/media/img_default.aee6adef.png",
     "static/media/img_dislike_black.png": "/react-web/static/media/img_dislike_black.19eca487.png",
     "static/media/img_dislike_red.png": "/react-web/static/media/img_dislike_red.154ec66e.png",
     "static/media/img_like_black.png": "/react-web/static/media/img_like_black.8946bf61.png",
-    "static/media/img_like_blue.png": "/react-web/static/media/img_like_blue.dc65f951.png"
+    "static/media/img_like_blue.png": "/react-web/static/media/img_like_blue.dc65f951.png",
+    "static/media/loading-blue-200px.svg": "/react-web/static/media/loading-blue-200px.ce2b7f02.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b459cbb4.js",
-    "static/js/2.c7d3c690.chunk.js",
-    "static/css/main.18857603.chunk.css",
-    "static/js/main.8e9457ec.chunk.js"
+    "static/js/2.594f8888.chunk.js",
+    "static/css/main.e0cd6301.chunk.css",
+    "static/js/main.46842712.chunk.js"
   ]
 }
