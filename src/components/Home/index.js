@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../Header'
 import Main from './Main'
-import Account from './Account'
+import Profile from './Profile'
 import local from '../location'
 import './master.css'
 
@@ -13,7 +13,7 @@ export default props => {
 
   const pages = {
     Main: <Main userInfos={userInfos} />,
-    Account: <Account />
+    Profile: <Profile />
   }
 
   React.useEffect(() => {
@@ -34,8 +34,6 @@ export default props => {
   React.useEffect(() => {
     if (pages[page]) local.set(page)
   }, [page])
-
-  
 
   return (
     <div className="Home">

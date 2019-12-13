@@ -39,7 +39,7 @@ export default props => {
         <div className="Header-menu">
           <ul id="vmenu">
             {/* <li><Link to="/home/account">My account</Link></li> */}
-            <li onClick={() => props.setPage('Account')}>Account</li>
+            <li onClick={() => props.setPage('Profile')}>Profile</li>
             <li>Friends</li>
             <li onClick={exit}>Exit</li>
           </ul>

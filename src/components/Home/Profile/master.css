@@ -1,0 +1,135 @@
+.Account {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  margin: 0px auto;
+}
+
+.Account-UserInfos {
+  width: 98%;
+  min-width: 420px;
+  background-color: white;
+  box-shadow: 0px 0px 2px #b1b1b1;
+  border-radius: 2px;
+  margin: 30px auto;
+  height: 200px;
+}
+
+.UserInfos-userName {
+
+}
+
+.UserInfos-firstName {
+
+}
+
+.UserInfos-lastName {
+  
+}
+
+.UserInfos-editAge {
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  margin-right: -15px;
+}
+
+.UserInfos-infoList {
+  list-style-type: none;
+}
+
+.UserInfos-infoList li {
+  padding: 15px;
+}
+
+.UserInfos-left {
+  float: left;
+  width: 69%;
+}
+
+.UserInfos-Fullname {
+  font-size: 25px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.UserInfos-details {
+  text-align: center;
+  margin-top: 35px;
+  width: 90%;
+  margin: 11px auto;
+  /* min-width: 282px; */
+}
+
+.UserInfos-desc {
+  margin-top: 15px;
+  font-style: italic;
+  color: grey;
+  font-size: 13px;
+}
+
+.UserInfos-right {
+  float: right;
+  width: 30%;
+  border: 1px solid #5c7ee9; 
+  height: 100%;
+}
+
+.UserInfos-right p {
+  text-align: center;
+  padding: 5px;
+  background-color: #5c7ee9;
+  font-weight: bold;
+  color: white;
+}
+
+.UserInfos-right-img {
+  width: 70%;
+  height: 70%;
+  margin: 0px auto;
+  height: 86%;
+}
+
+.UserInfos-right-img img {
+  width: 100%;
+  height: 100%;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  margin-top: 16px;
+  box-shadow: 0px 0px 3px #000000a6;
+}
+
+.UserInfos-changeImg {
+  position: absolute;
+  margin-top: 135px;
+  margin-left: -74px;
+  height: 25px;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px black;
+  background-color: transparent;
+  color: white
+}
+
+.UserInfos-changeImg:hover {
+  color: #5c7ee9;
+}
+
+.UserInfos-warn {
+  text-align: center;
+  font-size: 23px;
+  margin-top: -20px;
+  font-style: italic;
+}
+
+.red {
+  color: #ff7070;
+}
+
+.green {
+  color: #7af477;
+}
+
