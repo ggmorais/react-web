@@ -42,7 +42,7 @@ const Posts = props => {
 
   React.useEffect(() => {
     getPosts();
-  })
+  }, []);
   
   console.log(postsData);
 
