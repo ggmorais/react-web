@@ -24,7 +24,9 @@ const Posts = props => {
   }
 
   const handleLike = (id, type) => {
-    $.post(`${config.api}/insertLikes`, {_id: id, username: userInfos.username, type: type});
+    $.post(`${config.api}/insertLikes`, {_id: id, username: userInfos.username, type: type}, r => {
+      getPosts();
+    });
   }
 
   const deletePost = (id) => {
@@ -36,15 +38,14 @@ const Posts = props => {
           data.splice(i, id);
         }
       }
-      setPostsData(data);
+      //setPostsData(data);
+      getPosts();
     })
   }
-
+  
   React.useEffect(() => {
     getPosts();
-  }, []);
-  
-  console.log(postsData);
+  }, [props.refresh]);
 
   return (
     <div>

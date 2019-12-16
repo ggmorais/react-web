@@ -16,7 +16,6 @@ export default props => {
 
   return (
     <form onSubmit={handleCommentary}>
-
       <input 
         onChange={ e => setCommentary(e.target.value) } 
         type="text" 

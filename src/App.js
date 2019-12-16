@@ -12,9 +12,6 @@ import local from './components/location'
 
 export default props => {
 
-
-  console.log(process.env.REACT_APP_CLIENT);
-
   const [page, setPage] = React.useState(local.name())
 
   React.useEffect(() => {

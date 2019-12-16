@@ -9,12 +9,14 @@ import './master.scss';
 import like from '../../assets/img_like_blue.png';
 import like_black from '../../assets/img_like_black.png';
 import dislike from '../../assets/img_dislike_red.png';
-import dislike_black from '../../assets/img_dislike_black.png'
+import dislike_black from '../../assets/img_dislike_black.png';
+import default_img from '../../assets/img_default.png';
 
 
 export default props => {
 
   const [liked, setLiked] = React.useState(0);
+  const [userImage, setUserImage] = React.useState(default_img);
 
   const userInfos = JSON.parse(localStorage.getItem('@react-web/userInfos'));
 
@@ -23,6 +25,7 @@ export default props => {
   var date = date[4].substr(0, 5) + ' ' + date[0];
 
   React.useState(() => {
+    console.log('Content updating');
     // Verify if the auth user has liked the post
     if (props.likeList) {
       if (props.likeList.includes(userInfos.username))
@@ -33,7 +36,16 @@ export default props => {
       if (props.dislikeList.includes(userInfos.username))
         setLiked(-1);
     }
-  });
+
+    fetch(`${config.api}/public/user_images/${props.username}.png`).then(r => {
+      if (r.status === 200) {
+        return r.blob();
+      }
+    }).then(r => {
+      if (r)
+        setUserImage(URL.createObjectURL(r)); 
+    });
+  }, []);
   
   
 
@@ -41,7 +53,7 @@ export default props => {
     <div className="Post">
 
       <div className="Post-userImage">
-        <img src={`${config.api}/public/user_images/${props.username}.png`} />
+        <img src={userImage} />
       </div>
 
       <p style={{padding: '15px', fontSize: '15px', color: '#00000073'}}>
@@ -63,7 +75,7 @@ export default props => {
 
       <div className="Post-actions">
         <div 
-          onClick={() => { setLiked(liked > 0 ? 0 : 1); props.handleLike(props._id, 1) }} 
+          onClick={() => { setLiked(liked > 0 ? 0 : 1); props.handleLike(props._id, liked > 0 ? 0 : 1) }} 
           className="actions" 
           style={{backgroundImage: liked > 0 ? `url("${like}")` : `url("${like_black}")`}}
         >
@@ -71,7 +83,7 @@ export default props => {
         </div>
 
         <div 
-          onClick={() => { setLiked(liked < 0 ? 0 : -1); props.handleLike(props._id, -1) }} 
+          onClick={() => { setLiked(liked < 0 ? 0 : -1); props.handleLike(props._id, liked < 0 ? 0 : -1) }} 
           className="actions" 
           style={{backgroundImage: liked < 0 ? `url("${dislike}")` : `url("${dislike_black}")`}}
         >

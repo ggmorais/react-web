@@ -39,9 +39,9 @@ export default props => {
         contentType: false,
         processData: false,
         success: r => {
-          console.log(r);
           if (r.done) {
-            setValues({body: '', image: ''})
+            setValues({body: '', image: ''});
+            props.setRefresh(prev => prev + 1);
           }
         }
       })

@@ -9,11 +9,14 @@ import './master.css';
 
 
 export default props => {
+
+  const [refreshPosts, setRefreshPosts] = React.useState(0);
+
   return (
     <div className="Home-Main">
       <div className="PostViewer">
-        <NewPost />
-        <Posts />
+        <NewPost setRefresh={setRefreshPosts} />
+        <Posts refresh={refreshPosts} />
       </div>
     </div>
   )
