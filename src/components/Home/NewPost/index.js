@@ -24,6 +24,9 @@ export default props => {
   
   const handlePublish = () => {
     if (Object.keys(values).length > 0) {
+      if (values.body.length == 0 && values.image.length == 0) {
+        return;
+      }
       const form = new FormData()
       form.append('image', values.image)
       form.append('body', values.body)
