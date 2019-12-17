@@ -10,7 +10,8 @@ export default props => {
   function handleCommentary(e) {
     e.preventDefault()
     $.post(`${config.api}/insertCommentary`, {_id: props._id, userInfos: localStorage.getItem('@react-web/userInfos'), body: commentary, date: new Date()}, r => {
-      setCommentary('')
+      setCommentary('');
+      props.getPosts();
     })
   }
 

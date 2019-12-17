@@ -26,9 +26,11 @@ export default props => {
         setWarn()
         $.post(`${config.api}/insertUser`, form, r => {
             if (r.err)
-                setWarn(r.err)
-            else
-                window.location.reload();
+                return setWarn(r.err)
+
+            local.set('login')
+            window.location.reload();
+
         })
     }
 

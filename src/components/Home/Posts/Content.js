@@ -110,6 +110,7 @@ export default props => {
       <div className="NewCommentary">
         <NewCommentary
           _id={props._id}
+          getPosts={props.getPosts}
         />
       </div>
 

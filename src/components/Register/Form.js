@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default props => {
 
   return (
-    <form onSubmit={props.handleSubmit} >
+    <form>
       <input type="hidden" value="something" />
       <h1>Create new account</h1>
       <p style={{ display: props.warning ? 'block' : 'none' }} className="Warning">
@@ -22,7 +22,7 @@ export default props => {
       <label>Password</label>
       <input name="password" autoComplete="new-password" required="required" onChange={props.handleForm} className="Register-inputs" type="password" />
       <div className="Register-button-center">
-        <button>CREATE</button>
+        <button onClick={props.handleSubmit}>CREATE</button>
       </div>
       <p className="Register-signup">Already have an account? <Link to="/login">Sign in</Link></p>
     </form>

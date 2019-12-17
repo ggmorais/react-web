@@ -61,7 +61,8 @@ const Posts = props => {
           likeList={r.likeList}
           dislikeList={r.dislikeList}
           handleLike={handleLike}
-          deletePost={deletePost}            
+          deletePost={deletePost}
+          getPosts={getPosts}
         />
       )) : <Loading />}
       { (!isLoading && !postsData.length) ? <Warn color="#444444" message="We have nothing to show you now :c. Try comming back later!"/> : null }
